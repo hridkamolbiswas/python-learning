@@ -15,3 +15,15 @@ class Sim:
     def __init__(self):
         self.n_driving=[]
         self.parking=[]
+
+
+s = []
+name = 'hrid'
+
+while True:
+    print('after while')
+    if name == 'hrid':
+        print('iam hrid')
+    if not s:
+        print('im empty')
+        continue
