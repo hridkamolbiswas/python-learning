@@ -1,8 +1,15 @@
-from datetime import time
-config = {'school_start' : time(12,0),
-'school_end' : time(16,0)
+from datetime import time, date, datetime, timedelta
+config = {'START_TIME' :time(9,0),
+'end' : time(16,0)
         }
 
 
-if __name__=='__main__':
-    print(config)
+def tick_to_time(tick):
+    return datetime.combine(date.today(),config["START_TIME"]) + timedelta(seconds=tick)
+    
+def time_to_tick(minutes):
+    return minutes*60 # convert to second
+
+
+
+
