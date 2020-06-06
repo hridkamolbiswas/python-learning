@@ -41,17 +41,6 @@ class Car:
 def reporting(env, car, sim):
     while True:
 
-        # n_driving=[]
-        # n_parking=[]
-        # for car in sim.car_list:
-        #     if car.is_driving:
-        #         #print('driving')
-        #         n_driving.append(1)
-        #     if car.is_parking:
-        #         #print('parking')
-        #         n_parking.append(0) 
-        # print(f"{tick_to_time(env.now)} driving {len(n_driving)} parking {len(n_parking)}") 
-
         driving_drivers = len([driver for driver in sim.car_list if driver.is_driving])
         driving_parking = len([driver for driver in sim.car_list if driver.is_parking])
         print(f"\t{tick_to_time(env.now)} driving {driving_drivers} parking {driving_parking}") 
