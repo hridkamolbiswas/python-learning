@@ -40,19 +40,21 @@ class Car:
 
 def reporting(env, car, sim):
     while True:
-        #print(f"time : {tick_to_time(env.now)} {car.is_driving}")
-        #print(f"time : {tick_to_time(env.now)} {car.is_parking}")
 
-        n_driving=[]
-        n_parking=[]
-        for car in sim.car_list:
-            if car.is_driving:
-                #print('driving')
-                n_driving.append(1)
-            if car.is_parking:
-                #print('parking')
-                n_parking.append(0) 
-        print(f"{tick_to_time(env.now)} driving {len(n_driving)} parking {len(n_parking)}")       
+        # n_driving=[]
+        # n_parking=[]
+        # for car in sim.car_list:
+        #     if car.is_driving:
+        #         #print('driving')
+        #         n_driving.append(1)
+        #     if car.is_parking:
+        #         #print('parking')
+        #         n_parking.append(0) 
+        # print(f"{tick_to_time(env.now)} driving {len(n_driving)} parking {len(n_parking)}") 
+
+        driving_drivers = len([driver for driver in sim.car_list if driver.is_driving])
+        driving_parking = len([driver for driver in sim.car_list if driver.is_parking])
+        print(f"\t{tick_to_time(env.now)} driving {driving_drivers} parking {driving_parking}") 
         yield env.timeout(time_to_tick(minutes=1))
 
 env = simpy.Environment()
@@ -67,10 +69,7 @@ car = Car(env,2,5)
 env.process(reporting(env, ob, sim))
 
 env.run(until=time_to_tick(30))
-# env.process(car(env,5 , 20))
-# env.process(car(env,2 , 5))
-# env.process(car(env,3 , 7))
-# env.process(car(env,4 , 8))
+
 
 
 
