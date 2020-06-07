@@ -11,7 +11,7 @@ def shiftplanning(sim):
         if tick_to_time(sim.env.now) in drivers:
             print(f"{tick_to_time(sim.env.now)} drives starting to work")
             ob = Car(sim, tick_to_time(sim.env.now),2,10)
-            sim.car_list.append(ob)
+            sim.car_list.append(ob) #important
 
         yield sim.env.timeout(1)
 
@@ -20,22 +20,44 @@ def reporting(sim):
 
         driving_drivers = len([driver for driver in sim.car_list if driver.is_driving])
         driving_parking = len([driver for driver in sim.car_list if driver.is_parking])
-        print(f"\t{tick_to_time(env.now)} driving {driving_drivers} parking {driving_parking}") 
+        #print(f"\t{tick_to_time(env.now)} driving {driving_drivers} parking {driving_parking}") 
         yield sim.env.timeout(1)
 
 def tourplan(sim):
-    pass
+
+    while True:
+        print(f"{tick_to_time(sim.env.now)} n parking cars = {sim.n_parking}")
+        #print(sim.n_parking)
+        # if sim.is_parking:
+        #     for passenger in sim.passenger_list:
+        #         if len(sim.seat_occupied) < SEAT_LIMIT:
+        #             sim.seat_occupied.append(passenger)
+        #             sim.passenger_list.remove(passenger)
+
+        # print(f"passenger left = {len(sim.passenger_list)  - len(sim.seat_occupied)}")   
+
+        yield sim.env.timeout(1)
+
+
+
+
+    
+
+
+    
 
 env = simpy.Environment()
 sim= Sim(env)
 
-PASSENGER = 100
 SEAT_LIMIT = 25
 
 drivers_log = []
 env.process(shiftplanning(sim))
 env.process(reporting(sim))
+env.process(tourplan(sim))
 
 env.run(until=time_to_tick(31))
+
+#tourplan(sim)
 
 
