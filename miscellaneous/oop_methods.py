@@ -32,10 +32,16 @@ class Student:
         #print(ob)
         return cls.SCHOOL
 
+    @staticmethod
+    def static_mathod():
+        # not allowed to sue the self or cls attributes
+        return "this is a static method" 
+
 
 ob = Student("hrid Biswas", 200916047)
 print(ob)
 print(repr(ob))
+print(ob.static_mathod())
 # print(ob.email)
 # #print(ob.get_email())
 # print(Student.get_uni())
