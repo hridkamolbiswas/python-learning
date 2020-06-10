@@ -41,6 +41,9 @@ def feature_branch_func:
     print(" iam from feature branch")
 
 
+
+
+
 ob = Student("hrid Biswas", 200916047)
 print(ob)
 print(repr(ob))
@@ -48,3 +51,7 @@ print(ob.static_mathod())
 # print(ob.email)
 # #print(ob.get_email())
 # print(Student.get_uni())
+
+
+def summ(x, y):
+    return x + y
