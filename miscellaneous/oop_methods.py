@@ -37,6 +37,9 @@ class Student:
         # not allowed to sue the self or cls attributes
         return "this is a static method" 
 
+def feature_branch_func:
+    print(" iam from feature branch")
+
 
 ob = Student("hrid Biswas", 200916047)
 print(ob)
