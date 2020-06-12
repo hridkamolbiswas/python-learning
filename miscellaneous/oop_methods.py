@@ -1,6 +1,6 @@
 class Student:
 
-    SCHOOL = "UNIPB"
+    SCHOOL = "University of Paderborn"
 
     def __init__(self, name, roll):
         self.name = name
@@ -38,6 +38,7 @@ class Student:
         return "this is a static method" 
 
 
+
 ob = Student("hrid Biswas", 200916047)
 print(ob)
 print(repr(ob))
@@ -45,3 +46,7 @@ print(ob.static_mathod())
 # print(ob.email)
 # #print(ob.get_email())
 # print(Student.get_uni())
+
+
+def main_function():
+    print(" I am from main branch")
