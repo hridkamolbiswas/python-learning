@@ -23,6 +23,8 @@ class TestCalc(unittest.TestCase):
         self.assertEqual(Calculator().div(10,5), 2)
         self.assertEqual(Calculator().div(100,2), 50)
 
+    def test(self):
+        pass
 
 if __name__=='__main__':
     unittest.main()
