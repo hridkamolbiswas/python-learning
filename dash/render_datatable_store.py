@@ -13,6 +13,7 @@ available_countries = ['Afghanistan', 'Albania', 'Algeria', 'Angola', 'Argentina
 app.layout = html.Div([
     
     dcc.Store(id='store_data', data=[], storage_type="session"),
+    dcc.Store(id='temp_store_data', data=[], storage_type="memory"),
 
     html.Button(id='button', children='load-data'),
 
@@ -34,20 +35,30 @@ def get_store_data(n_clicks):
         df = pd.read_csv('https://raw.githubusercontent.com/plotly/datasets/master/gapminderDataFiveYear.csv')
         return df.to_dict('records')
 
+
 @app.callback(
-    Output('data_table', 'data'),
+    Output('temp_store_data', 'data'),
     [
         Input('select_country', 'value'),
         Input('store_data', 'data')
     ]
 )
-def get_data_table(country_col, store_data):
+def get_temp_store_data(country_col, store_data):
     df = pd.DataFrame(store_data)
     if len(df)>=1:    
         dff= df[df.country==country_col]
+        #print(dff.to_dict('records'))
         return dff.to_dict('records')
     else: 
-        return {}
+        return []
+
+@app.callback(
+    Output('data_table', 'data'),
+    Input('temp_store_data', 'data'),
+)
+def get_data(temp_data):
+    dff= pd.DataFrame(temp_data)
+    return dff.to_dict('records')
 
 
 if __name__ == '__main__':
